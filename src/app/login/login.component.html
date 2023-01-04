@@ -1,0 +1,30 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="loginForm" class="example-form">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="username" placeholder="Username" name="username">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput formControlName="password" placeholder="Password" name="password">
+        </mat-form-field>
+      </mat-card-content>
+      <button type="submit" [disabled]="showLoading" mat-raised-button color="primary" class="btn-block" (click)="onSubmit(loginForm.value)">Log in</button>
+    </form>
+    <div>
+      <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+            Don't have an account? <a class="ml-2" style="color: #C2185B" routerLink="/register">Sign up</a>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngIf="showLoading">
+      <div class="overlay"></div>
+      <mat-progress-spinner style="margin:0 auto;" [mode]="'indeterminate'"></mat-progress-spinner>
+    </ng-container>
+  </mat-card>
+</div>
+
