@@ -36,10 +36,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularMaterialModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [ AuthenticationService,
-    { provide: HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     NotificationService, AuthenticationGuard,  UserService
   ],
   bootstrap: [AppComponent],
