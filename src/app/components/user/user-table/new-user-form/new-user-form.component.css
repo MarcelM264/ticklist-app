@@ -1,0 +1,14 @@
+.mat-form-field {
+  width: 100%;
+  padding: 1%;
+}
+.button-row {
+  text-align: center;
+}
+
+mat-divider {
+  width: 30%;
+  display: flex;
+  margin: 0px auto 20px auto;
+  background-color: #212121;
+}

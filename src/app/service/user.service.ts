@@ -21,6 +21,11 @@ export class UserService {
     return this.http.get<User[]>(`${this.host}/user/list`);
   }
 
+  public getUser(username: string): Observable<User> {
+    return this.http.get<User>(`${this.host}/user/find/${username}`)
+    console.log(username);
+  }
+
   public addUser(formData: FormData): Observable<User | HttpErrorResponse> {
     return this.http.post<User>(`${this.host}/user/add`, formData);
   }
@@ -64,9 +69,9 @@ export class UserService {
     formData.append('username', user.username);
     formData.append('email', user.email);
     formData.append('role', user.role);
-    formData.append('profileImage', user.profileImage);
-    formData.append('isActive', JSON.stringify(user.active));
-    formData.append('inNotLocked', JSON.stringify(user.notLocked));
+    formData.append('profileImage', user.profileImageUrl);
+    formData.append('isActive', JSON.stringify(user.isActive));
+    formData.append('inNotLocked', JSON.stringify(user.isNotLocked));
     return formData;
   }
 }

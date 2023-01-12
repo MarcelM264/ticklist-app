@@ -1,0 +1,115 @@
+<h2 mat-dialog-title fxLayoutAlign="center">Add Member</h2>
+<mat-divider></mat-divider>
+<ng-container class="add-member-form">
+  <form
+    novalidate
+    class="example-container"
+    [formGroup]="addUserForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Firstname</mat-label>
+      <input
+        matInput
+        class="form-control"
+        placeholder="Firstname"
+        formControlName="firstName"
+      />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Lastname</mat-label>
+      <input
+        matInput
+        class="form-control"
+        placeholder="Lastname"
+        formControlName="lastName"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        class="form-control"
+        placeholder="Username"
+        formControlName="username"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        class="form-control"
+        placeholder="Email"
+        formControlName="email"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Role</mat-label>
+      <mat-select placeholder="Choose Role" formControlName="role">
+        <mat-option value="ROLE_USER"> USER </mat-option>
+        <mat-option value="ROLE_HR" > HR </mat-option>
+        <mat-option value="ROLE_MANAGER"> MANAGER </mat-option>
+        <mat-option value="ROLE_ADMIN"> ADMIN </mat-option>
+        <mat-option value="ROLE_SUPER_ADMIN"> SUPER ADMIN </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Profile Image</mat-label>
+      <input
+        matInput
+        type="file"
+        accept="image/*"
+        class="form-control"
+        formControlName="profileImage"
+      />
+    </mat-form-field> -->
+    <mat-checkbox color="primary">
+      Primary theme checkbox
+    </mat-checkbox>
+    <br />
+
+    <!-- <div formGroupName="addressDto">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Street</mat-label>
+        <input
+          matInput
+          class="form-control"
+          placeholder="Street"
+          formControlName="street"
+        />
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>No.</mat-label>
+        <input
+          matInput
+          class="form-control"
+          placeholder="HouseNo."
+          formControlName="houseNumber"
+        />
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Post Code</mat-label>
+        <input
+          matInput
+          class="form-control"
+          placeholder="Post Code"
+          formControlName="postCode"
+        />
+      </mat-form-field>
+    </div> -->
+    <div class="button-row">
+      <button
+        [disabled]=""
+        mat-raised-button
+        color="primary"
+        type="submit"
+        mat-dialog-close="true"
+      >
+        Submit
+      </button>
+      |
+      <a mat-raised-button color="accent" mat-dialog-close="true">Cancel</a>
+    </div>
+  </form>
+</ng-container>
