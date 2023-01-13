@@ -12,7 +12,7 @@ import { UserEditFormComponent } from './user-edit-form/user-edit-form.component
   styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit, OnDestroy {
-  user: User;
+  user?: User;
   subscription?: Subscription;
   onDestroy$ = new Subject<void>();
 
@@ -31,6 +31,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
           this.user = user;
         })
     );
+
   }
 
   ngOnDestroy(): void {
@@ -43,10 +44,11 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(UserEditFormComponent, {
       width: '800px',
       data: user,
+
     });
-    console.log(dialogRef);
     dialogRef.afterClosed().subscribe((result) => {
       this.user = user;
+      console.log(this.user)
     });
   }
 }
