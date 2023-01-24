@@ -7,7 +7,7 @@ import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { User } from 'src/app/model/user';
 import { NotificationService } from 'src/app/service/notification.service';
 import { UserService } from 'src/app/service/user.service';
-import { blob } from 'stream/consumers';
+
 
 
 @Component({
@@ -65,21 +65,10 @@ export class UserEditFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const imageUrl = ('https://robohash.org/' + this.data.username)
-
-     fetch(imageUrl)
-    .then(res => res.blob())
-    .then(blob => {
-      console.log(blob)
-     this.profileImage = new File([blob], 'image', { type: blob.type})
-     console.log(this.profileImage)
-    })
-
-  }
+    this.urlToFile();
+}
 
   public onUpdateUser() {
-    console.log(this.editUserForm.value);
-    console.log(this.profileImage)
     const formData = this.userService.createUserFormData(
       this.editUserForm.value.currentUsername,
       this.editUserForm.value,
@@ -97,16 +86,22 @@ export class UserEditFormComponent implements OnInit {
     );
   }
 
-  public getFileFromCurrentUser() {
-
-  }
-
   public getFile(event: any) {
       this.profileImage = event.target.files[0];
       this.fileName = this.profileImage.name;
     }
 
+  private urlToFile() {
+    const imageUrl = ('https://robohash.org/' + this.data.username)
 
+     fetch(imageUrl)
+    .then(res => res.blob())
+    .then(blob => {
+      console.log(blob)
+     this.profileImage = new File([blob], 'profileImage', { type: blob.type})
+     console.log(this.profileImage)
+    })
+  }
 
   private sendNotification(
     notificationType: NotificationType,

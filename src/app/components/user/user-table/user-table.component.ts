@@ -10,15 +10,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/service/user.service';
-import { Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 import { NotificationService } from 'src/app/service/notification.service';
 import { NotificationType } from 'src/app/enum/notification-type.enum';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { AddUserFormComponent } from '../add-user-form/add-user-form.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
 import { NewUserFormComponent } from './new-user-form/new-user-form.component';
-
 
 @Component({
   selector: 'app-user-table',
@@ -35,18 +32,25 @@ export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['profileImageUrl', 'userId', 'firstName', 'lastName', 'username', 'email', 'isActive', 'details', 'delete'];
+  displayedColumns = [
+    'profileImageUrl',
+    'userId',
+    'firstName',
+    'lastName',
+    'username',
+    'email',
+    'isActive',
+    'details',
+    'delete',
+  ];
 
   constructor(
     private dialog: MatDialog,
     private userService: UserService,
     private notificationService: NotificationService
-  ) {
-
-  }
+  ) {}
   ngOnInit(): void {
     this.getUsers(true);
-
   }
 
   ngOnDestroy(): void {
@@ -54,8 +58,7 @@ export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+
   }
 
   getUsers(showNotification: boolean): void {
@@ -64,16 +67,26 @@ export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
         this.userService.addUsersToLocalCache(response);
         this.data = response;
         this.dataSource = new MatTableDataSource<User>(this.data);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
         this.refreshing = false;
         if (showNotification) {
-          this.sendNotification(NotificationType.SUCCESS, `${response.length} user(s) loaded succesfully.`)
+          this.sendNotification(
+            NotificationType.SUCCESS,
+            `${response.length} user(s) loaded succesfully.`
+          );
         }
       },
       error: (errorResponse: HttpErrorResponse) => {
-        this.sendNotification(NotificationType.ERROR, errorResponse.error.message);
+        this.sendNotification(
+          NotificationType.ERROR,
+          errorResponse.error.message
+        );
         this.refreshing = false;
       },
-      complete: () => { this.refreshing = false}
+      complete: () => {
+        this.refreshing = false;
+      },
     };
 
     this.subscriptions.push(this.userService.getUsers().subscribe(observer));
@@ -107,6 +120,5 @@ export class UserTableComponent implements OnInit, AfterViewInit, OnDestroy {
       exitAnimationDuration: enterAnimation,
       width: '50%',
     });
-
   }
 }

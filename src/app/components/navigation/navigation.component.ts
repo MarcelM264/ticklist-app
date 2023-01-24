@@ -22,11 +22,22 @@ export class NavigationComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private authenticationService: AuthenticationService,
     private router: Router
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     if (!this.authenticationService.isUserLoggedIn()) {
       this.router.navigateByUrl('/login');
     }
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  public onLoginButton(): void {
+    this.router.navigateByUrl('/login');
+  }
+
+  public onLogOut(): void {
+    this.authenticationService.logOut();
+    this.router.navigateByUrl('/login');
   }
 }

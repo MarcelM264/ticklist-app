@@ -46,9 +46,9 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
       data: user,
 
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      this.user = user;
-      console.log(this.user)
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+
     });
   }
 }

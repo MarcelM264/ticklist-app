@@ -29,7 +29,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { RouteListComponent } from './components/route/route-list/route-list.component';
-import { AddUserFormComponent } from './components/user/add-user-form/add-user-form.component';
 import { UserDetailsComponent } from './components/user/user-table/user-details/user-details.component';
 import { UserEditFormComponent } from './components/user/user-table/user-details/user-edit-form/user-edit-form.component';
 import { NewUserFormComponent } from './components/user/user-table/new-user-form/new-user-form.component';
@@ -46,7 +45,6 @@ import { NewUserFormComponent } from './components/user/user-table/new-user-form
     UserProfileComponent,
     UserTableComponent,
     RouteListComponent,
-    AddUserFormComponent,
     UserDetailsComponent,
     UserEditFormComponent,
     NewUserFormComponent
